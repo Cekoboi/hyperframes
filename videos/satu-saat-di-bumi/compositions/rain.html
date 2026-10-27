@@ -1,0 +1,140 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: #2340ff;
+      color: #ffffff;
+      font-family: "Inter", sans-serif;
+    }
+    #rain-sky {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1920px;
+      height: 1080px;
+    }
+    #rain-num {
+      position: absolute;
+      left: 180px;
+      top: 170px;
+      font-family: "League Gothic", sans-serif;
+      font-size: 560px;
+      line-height: 0.82;
+      font-variant-numeric: tabular-nums;
+    }
+    #rain-unit {
+      position: absolute;
+      left: 620px;
+      top: 470px;
+      font-family: "League Gothic", sans-serif;
+      font-size: 170px;
+      line-height: 0.82;
+    }
+    #rain-label {
+      position: absolute;
+      left: 192px;
+      top: 680px;
+      font-weight: 900;
+      font-size: 72px;
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+    }
+    #rain-more {
+      position: absolute;
+      left: 192px;
+      top: 790px;
+      font-weight: 700;
+      font-size: 44px;
+      line-height: 1.1;
+    }
+    #rain-src {
+      position: absolute;
+      left: 192px;
+      top: 945px;
+      font-weight: 700;
+      font-size: 28px;
+      opacity: 0.75;
+    }
+  </style>
+  <div data-hf-id="hf-uzp1" id="root" data-composition-id="rain" data-width="1920" data-height="1080">
+    <svg data-hf-id="hf-s6cr" id="rain-sky" viewBox="0 0 1920 1080" data-layout-ignore></svg>
+    <div data-hf-id="hf-dtsw" id="rain-num">0</div>
+    <div data-hf-id="hf-h33f" id="rain-unit">juta tan</div>
+    <div data-hf-id="hf-e5up" id="rain-label">air hujan turun ke Bumi</div>
+    <div data-hf-id="hf-1o45" id="rain-more">≈ 6,400 kolam renang Olimpik</div>
+    <div data-hf-id="hf-k7ah" id="rain-src">Anggaran daripada data kitaran air USGS</div>
+  </div>
+  <script>
+    const sky = document.getElementById("rain-sky");
+    const NS = "http://www.w3.org/2000/svg";
+    // seeded, so every render places the same streaks
+    let seed = 7;
+    const rand = () => {
+      seed = (seed * 16807) % 2147483647;
+      return seed / 2147483647;
+    };
+    const tl = gsap.timeline({ paused: true });
+    const streaks = [];
+    for (let i = 0; i < 70; i++) {
+      const x = 40 + rand() * 1840;
+      const len = 70 + rand() * 90;
+      const fall = 0.55 + rand() * 0.35;
+      const line = document.createElementNS(NS, "rect");
+      line.setAttribute("x", x.toFixed(1));
+      line.setAttribute("y", "0");
+      line.setAttribute("width", "4");
+      line.setAttribute("height", len.toFixed(0));
+      line.setAttribute("fill", "#ffffff");
+      line.setAttribute("fill-opacity", (0.22 + rand() * 0.2).toFixed(2));
+      sky.appendChild(line);
+      streaks.push({ el: line, fall, phase: rand() });
+    }
+    // every streak's height is a pure function of scene time
+    const clock = { t: 0 };
+    const placeRain = () => {
+      for (const s of streaks) {
+        const k = (clock.t / s.fall + s.phase) % 1;
+        s.el.setAttribute("y", (-200 + k * 1300).toFixed(1));
+      }
+    };
+    placeRain();
+    tl.fromTo(clock, { t: 0 }, { t: 6, duration: 6, ease: "none", onUpdate: placeRain }, 0);
+    const numEl = document.getElementById("rain-num");
+    const n = { v: 0 };
+    tl.fromTo(
+      n,
+      { v: 0 },
+      {
+        v: 16,
+        duration: 1.4,
+        ease: "power2.out",
+        onUpdate: () => {
+          numEl.textContent = String(Math.round(n.v));
+        },
+      },
+      0.4,
+    );
+    tl.fromTo(
+      "#rain-unit",
+      { clipPath: "inset(0 100% 0 0)" },
+      { clipPath: "inset(0 0% 0 0)", duration: 0.4, ease: "power3.out" },
+      0.5,
+    );
+    tl.fromTo(
+      "#rain-label",
+      { clipPath: "inset(0 100% 0 0)" },
+      { clipPath: "inset(0 0% 0 0)", duration: 0.45, ease: "power3.out" },
+      1.0,
+    );
+    tl.fromTo("#rain-src", { opacity: 0 }, { opacity: 0.75, duration: 0.3, ease: "none" }, 1.8);
+    tl.fromTo(
+      "#rain-more",
+      { clipPath: "inset(0 100% 0 0)" },
+      { clipPath: "inset(0 0% 0 0)", duration: 0.45, ease: "power3.out" },
+      2.4,
+    );
+    window.__timelines["rain"] = tl;
+  </script>
+</template>

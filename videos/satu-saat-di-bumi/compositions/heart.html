@@ -1,0 +1,102 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: #111111;
+      color: #ffffff;
+      font-family: "Inter", sans-serif;
+    }
+    #heart-art {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1920px;
+      height: 1080px;
+    }
+    #heart-num {
+      position: absolute;
+      left: 190px;
+      top: 110px;
+      font-family: "League Gothic", sans-serif;
+      font-size: 480px;
+      line-height: 0.82;
+      font-variant-numeric: tabular-nums;
+      transform-origin: 50% 60%;
+    }
+    #heart-label {
+      position: absolute;
+      left: 470px;
+      top: 170px;
+      width: 1200px;
+      font-weight: 900;
+      font-size: 110px;
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+    #heart-you {
+      color: #ff3b1f;
+    }
+    #heart-more {
+      position: absolute;
+      left: 192px;
+      top: 880px;
+      font-weight: 900;
+      font-size: 64px;
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+    }
+    #heart-src {
+      position: absolute;
+      left: 474px;
+      top: 420px;
+      font-weight: 700;
+      font-size: 28px;
+      opacity: 0.75;
+    }
+  </style>
+  <div data-hf-id="hf-gg91" id="root" data-composition-id="heart" data-width="1920" data-height="1080">
+    <svg data-hf-id="hf-9glz" id="heart-art" viewBox="0 0 1920 1080" data-layout-ignore>
+      <path data-hf-id="hf-75cv"
+        id="heart-trace"
+        d="M0,720 L820,720 L860,680 L895,720 L925,720 L960,470 L1000,850 L1035,720 L1095,720 L1140,665 L1195,720 L1920,720"
+        fill="none"
+        stroke="#ff3b1f"
+        stroke-width="12"
+        stroke-linejoin="round"
+        stroke-linecap="round"
+      />
+    </svg>
+    <div data-hf-id="hf-55vv" id="heart-num">1</div>
+    <div data-hf-id="hf-ov6d" id="heart-label">degupan<br data-hf-id="hf-x5px" />jantung <span data-hf-id="hf-boi0" id="heart-you">anda</span></div>
+    <div data-hf-id="hf-x0ty" id="heart-more">— dan yang itu pun dah berlalu.</div>
+    <div data-hf-id="hf-uufe" id="heart-src">Kadar rehat orang dewasa: 60–100 seminit (American Heart Association)</div>
+  </div>
+  <script>
+    const trace = document.getElementById("heart-trace");
+    const len = trace.getTotalLength();
+    trace.setAttribute("stroke-dasharray", len.toFixed(1));
+    trace.setAttribute("stroke-dashoffset", len.toFixed(1));
+    const spikeAt = 0.456; // the spike's tip sits 45.6% along the trace
+
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo(
+      "#heart-label",
+      { clipPath: "inset(0 100% 0 0)" },
+      { clipPath: "inset(0 0% 0 0)", duration: 0.45, ease: "power3.out" },
+      0.25,
+    );
+    // one real second of a resting heart: the trace draws across, one beat in the middle
+    tl.fromTo(trace, { attr: { "stroke-dashoffset": len } }, { attr: { "stroke-dashoffset": 0 }, duration: 1, ease: "none" }, 0.4);
+    tl.fromTo("#heart-num", { opacity: 0, scale: 1.4 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power4.out" }, 0.4 + spikeAt);
+    tl.fromTo("#heart-src", { opacity: 0 }, { opacity: 0.75, duration: 0.3, ease: "none" }, 1.9);
+    tl.fromTo(
+      "#heart-more",
+      { clipPath: "inset(0 100% 0 0)" },
+      { clipPath: "inset(0 0% 0 0)", duration: 0.45, ease: "power3.out" },
+      2.6,
+    );
+    window.__timelines["heart"] = tl;
+  </script>
+</template>

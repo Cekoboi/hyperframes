@@ -1,0 +1,141 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: #ffd21f;
+      color: #111111;
+      font-family: "Inter", sans-serif;
+    }
+    #tally-list {
+      position: absolute;
+      inset: 0;
+    }
+    #tally-head {
+      position: absolute;
+      left: 192px;
+      top: 130px;
+      font-weight: 900;
+      font-size: 64px;
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+    }
+    .tally-row {
+      position: absolute;
+      left: 192px;
+      width: 1536px;
+      height: 200px;
+    }
+    .tally-num {
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-family: "League Gothic", sans-serif;
+      font-size: 230px;
+      line-height: 0.82;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+    .tally-what {
+      position: absolute;
+      left: 760px;
+      top: 70px;
+      font-weight: 900;
+      font-size: 72px;
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+    #tally-r1 {
+      top: 250px;
+    }
+    #tally-r2 {
+      top: 480px;
+    }
+    #tally-r3 {
+      top: 710px;
+    }
+    #tally-end {
+      position: absolute;
+      left: 180px;
+      top: 300px;
+      font-family: "League Gothic", sans-serif;
+      font-size: 300px;
+      line-height: 0.86;
+      transform-origin: 0% 50%;
+    }
+    #tally-next {
+      position: absolute;
+      left: 192px;
+      top: 890px;
+      font-weight: 900;
+      font-size: 64px;
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+    }
+  </style>
+  <div data-hf-id="hf-g5zr" id="root" data-composition-id="tally" data-width="1920" data-height="1080">
+    <div data-hf-id="hf-i4ky" id="tally-list">
+      <div data-hf-id="hf-1jif" id="tally-head">Sepanjang 60 saat video ini:</div>
+      <div data-hf-id="hf-3xqz" id="tally-r1" class="tally-row">
+        <div data-hf-id="hf-yvwx" class="tally-num"><span data-hf-id="hf-mc3y" id="tally-n1">0</span> km</div>
+        <div data-hf-id="hf-28yn" class="tally-what">Bumi bergerak</div>
+      </div>
+      <div data-hf-id="hf-t29c" id="tally-r2" class="tally-row">
+        <div data-hf-id="hf-6cs4" class="tally-num" id="tally-n2">0</div>
+        <div data-hf-id="hf-05fc" class="tally-what">kilat berlaku</div>
+      </div>
+      <div data-hf-id="hf-ttx5" id="tally-r3" class="tally-row">
+        <div data-hf-id="hf-ipyr" class="tally-num">≈ <span data-hf-id="hf-cggw" id="tally-n3">0</span></div>
+        <div data-hf-id="hf-wnsw" class="tally-what">bayi lahir</div>
+      </div>
+    </div>
+    <div data-hf-id="hf-fxtk" id="tally-end">Saat itu dah<br data-hf-id="hf-x5px" />berlalu.</div>
+    <div data-hf-id="hf-3zfn" id="tally-next">Guna saat seterusnya baik-baik.</div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    const wipe = (sel, t, d) =>
+      tl.fromTo(
+        sel,
+        { clipPath: "inset(0 100% 0 0)" },
+        { clipPath: "inset(0 0% 0 0)", duration: d || 0.4, ease: "power3.out" },
+        t,
+      );
+    const count = (id, to, t, round) => {
+      const el = document.getElementById(id);
+      const n = { v: 0 };
+      tl.fromTo(
+        n,
+        { v: 0 },
+        {
+          v: to,
+          duration: 1.4,
+          ease: "power2.out",
+          onUpdate: () => {
+            el.textContent = (Math.round(n.v / round) * round).toLocaleString("en-US");
+          },
+        },
+        t,
+      );
+    };
+    wipe("#tally-head", 0.45);
+    // the totals count one after another, never all at once
+    wipe("#tally-r1", 0.9);
+    count("tally-n1", 1800, 0.9, 10);
+    wipe("#tally-r2", 1.6);
+    count("tally-n2", 2640, 1.6, 10);
+    wipe("#tally-r3", 2.3);
+    count("tally-n3", 250, 2.3, 1);
+    // a beat of stillness, then the list is cut away and the last line lands
+    tl.fromTo(
+      "#tally-list",
+      { clipPath: "inset(0 0 0% 0)" },
+      { clipPath: "inset(0 0 100% 0)", duration: 0.25, ease: "power3.in" },
+      4.35,
+    );
+    tl.fromTo("#tally-end", { opacity: 0, scale: 1.3 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power4.out" }, 4.6);
+    wipe("#tally-next", 5.8, 0.5);
+    window.__timelines["tally"] = tl;
+  </script>
+</template>

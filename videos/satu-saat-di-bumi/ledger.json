@@ -1,0 +1,68 @@
+{
+  "fps": 30,
+  "seams": [
+    {
+      "id": "hook→ask",
+      "cut": 4,
+      "technique": "cut-the-curve LEFT",
+      "exit": { "selector": "#hook", "axis": "x", "dir": -1 },
+      "entry": { "selector": "#ask", "axis": "x", "dir": -1 }
+    },
+    {
+      "id": "ask→orbit",
+      "cut": 8,
+      "technique": "zoom-through (push)",
+      "exit": { "selector": "#ask", "axis": "z", "dir": 1 },
+      "entry": { "selector": "#orbit", "axis": "z", "dir": 1 }
+    },
+    {
+      "id": "orbit→bolt",
+      "cut": 14,
+      "technique": "cut-the-curve LEFT",
+      "exit": { "selector": "#orbit", "axis": "x", "dir": -1 },
+      "entry": { "selector": "#bolt", "axis": "x", "dir": -1 }
+    },
+    {
+      "id": "bolt→rain",
+      "cut": 20,
+      "technique": "cut-the-curve LEFT",
+      "exit": { "selector": "#bolt", "axis": "x", "dir": -1 },
+      "entry": { "selector": "#rain", "axis": "x", "dir": -1 }
+    },
+    {
+      "id": "rain→sun",
+      "cut": 26,
+      "technique": "cut-the-curve LEFT",
+      "exit": { "selector": "#rain", "axis": "x", "dir": -1 },
+      "entry": { "selector": "#sun", "axis": "x", "dir": -1 }
+    },
+    {
+      "id": "sun→light",
+      "cut": 32,
+      "technique": "cut-the-curve LEFT",
+      "exit": { "selector": "#sun", "axis": "x", "dir": -1 },
+      "entry": { "selector": "#light", "axis": "x", "dir": -1 }
+    },
+    {
+      "id": "light→baby",
+      "cut": 38,
+      "technique": "cut-the-curve LEFT",
+      "exit": { "selector": "#light", "axis": "x", "dir": -1 },
+      "entry": { "selector": "#baby", "axis": "x", "dir": -1 }
+    },
+    {
+      "id": "baby→heart",
+      "cut": 44,
+      "technique": "cut-the-curve LEFT",
+      "exit": { "selector": "#baby", "axis": "x", "dir": -1 },
+      "entry": { "selector": "#heart", "axis": "x", "dir": -1 }
+    },
+    {
+      "id": "heart→tally",
+      "cut": 50,
+      "technique": "cut-the-curve UP (conclusion)",
+      "exit": { "selector": "#heart", "axis": "y", "dir": -1 },
+      "entry": { "selector": "#tally", "axis": "y", "dir": -1 }
+    }
+  ]
+}

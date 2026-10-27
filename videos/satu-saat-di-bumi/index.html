@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="ms">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #111111;
+      }
+      #root {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        /* opaque stage: nothing white shows through a seam */
+        background: #111111;
+      }
+    </style>
+  </head>
+  <body>
+    <div data-hf-id="hf-zvfg"
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="59"
+      data-width="1920"
+      data-height="1080"
+    >
+      <div data-hf-id="hf-3d16"
+        id="hook"
+        data-composition-id="hook"
+        data-composition-src="compositions/hook.html"
+        data-start="0"
+        data-duration="4"
+        data-track-index="1"
+        data-track-kind="graphics"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+      <div data-hf-id="hf-hthy"
+        id="ask"
+        data-composition-id="ask"
+        data-composition-src="compositions/ask.html"
+        data-start="4"
+        data-duration="4"
+        data-track-index="1"
+        data-track-kind="graphics"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+      <div data-hf-id="hf-yo6z"
+        id="orbit"
+        data-composition-id="orbit"
+        data-composition-src="compositions/orbit.html"
+        data-start="8"
+        data-duration="6"
+        data-track-index="1"
+        data-track-kind="graphics"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+      <div data-hf-id="hf-t45l"
+        id="bolt"
+        data-composition-id="bolt"
+        data-composition-src="compositions/bolt.html"
+        data-start="14"
+        data-duration="6"
+        data-track-index="1"
+        data-track-kind="graphics"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+      <div data-hf-id="hf-fv2d"
+        id="rain"
+        data-composition-id="rain"
+        data-composition-src="compositions/rain.html"
+        data-start="20"
+        data-duration="6"
+        data-track-index="1"
+        data-track-kind="graphics"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+      <div data-hf-id="hf-6sq7"
+        id="sun"
+        data-composition-id="sun"
+        data-composition-src="compositions/sun.html"
+        data-start="26"
+        data-duration="6"
+        data-track-index="1"
+        data-track-kind="graphics"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+      <div data-hf-id="hf-0avk"
+        id="light"
+        data-composition-id="light"
+        data-composition-src="compositions/light.html"
+        data-start="32"
+        data-duration="6"
+        data-track-index="1"
+        data-track-kind="graphics"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+      <div data-hf-id="hf-u3wo"
+        id="baby"
+        data-composition-id="baby"
+        data-composition-src="compositions/baby.html"
+        data-start="38"
+        data-duration="6"
+        data-track-index="1"
+        data-track-kind="graphics"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+      <div data-hf-id="hf-mqxt"
+        id="heart"
+        data-composition-id="heart"
+        data-composition-src="compositions/heart.html"
+        data-start="44"
+        data-duration="6"
+        data-track-index="1"
+        data-track-kind="graphics"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+      <div data-hf-id="hf-i64t"
+        id="tally"
+        data-composition-id="tally"
+        data-composition-src="compositions/tally.html"
+        data-start="50"
+        data-duration="9"
+        data-track-index="1"
+        data-track-kind="graphics"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+      <audio data-hf-id="hf-sbi6" id="sfx-ring" class="clip" src="assets/sfx/ping.mp3" data-start="1.01" data-duration="1" data-volume="0.5" data-track-index="2"></audio>
+      <audio data-hf-id="hf-35di" id="sfx-cut1" class="clip" src="assets/sfx/whoosh.mp3" data-start="3.87" data-duration="0.5" data-volume="0.6" data-track-index="2"></audio>
+      <audio data-hf-id="hf-oi5j" id="sfx-push" class="clip" src="assets/sfx/whoosh-cinematic.mp3" data-start="7.73" data-duration="1.2" data-media-start="2.2" data-volume="0.55" data-track-index="2"></audio>
+      <audio data-hf-id="hf-tn2b" id="sfx-orbit" class="clip" src="assets/sfx/pop.mp3" data-start="9.51" data-duration="0.5" data-volume="0.6" data-track-index="2"></audio>
+      <audio data-hf-id="hf-2smi" id="sfx-cut2" class="clip" src="assets/sfx/whoosh.mp3" data-start="13.87" data-duration="0.5" data-volume="0.6" data-track-index="2"></audio>
+      <audio data-hf-id="hf-nlql" id="sfx-bolt" class="clip" src="assets/sfx/ping.mp3" data-start="15.31" data-duration="1" data-volume="0.5" data-track-index="2"></audio>
+      <audio data-hf-id="hf-9oo0" id="sfx-cut3" class="clip" src="assets/sfx/whoosh-cinematic.mp3" data-start="19.73" data-duration="1.2" data-media-start="2.2" data-volume="0.5" data-track-index="2"></audio>
+      <audio data-hf-id="hf-stsq" id="sfx-sun" class="clip" src="assets/sfx/impact-bass-2.mp3" data-start="25.85" data-duration="2.5" data-volume="0.6" data-track-index="2"></audio>
+      <audio data-hf-id="hf-1m12" id="sfx-cut4" class="clip" src="assets/sfx/whoosh.mp3" data-start="25.87" data-duration="0.5" data-volume="0.6" data-track-index="3"></audio>
+      <audio data-hf-id="hf-ljcw" id="sfx-cut5" class="clip" src="assets/sfx/whoosh-cinematic.mp3" data-start="31.73" data-duration="1.2" data-media-start="2.2" data-volume="0.5" data-track-index="2"></audio>
+      <audio data-hf-id="hf-bpul" id="sfx-light" class="clip" src="assets/sfx/pop.mp3" data-start="33.81" data-duration="0.5" data-volume="0.6" data-track-index="2"></audio>
+      <audio data-hf-id="hf-xr5s" id="sfx-cut6" class="clip" src="assets/sfx/whoosh.mp3" data-start="37.87" data-duration="0.5" data-volume="0.6" data-track-index="2"></audio>
+      <audio data-hf-id="hf-0jr0" id="sfx-baby1" class="clip" src="assets/sfx/pop.mp3" data-start="38.51" data-duration="0.3" data-volume="0.55" data-track-index="2"></audio>
+      <audio data-hf-id="hf-c8za" id="sfx-baby2" class="clip" src="assets/sfx/pop.mp3" data-start="38.76" data-duration="0.3" data-volume="0.5" data-track-index="3"></audio>
+      <audio data-hf-id="hf-kx1y" id="sfx-baby3" class="clip" src="assets/sfx/pop.mp3" data-start="39.01" data-duration="0.3" data-volume="0.55" data-track-index="2"></audio>
+      <audio data-hf-id="hf-3qfp" id="sfx-baby4" class="clip" src="assets/sfx/pop.mp3" data-start="39.26" data-duration="0.5" data-volume="0.6" data-track-index="3"></audio>
+      <audio data-hf-id="hf-catp" id="sfx-cut7" class="clip" src="assets/sfx/whoosh-cinematic.mp3" data-start="43.73" data-duration="1.2" data-media-start="2.2" data-volume="0.5" data-track-index="2"></audio>
+      <audio data-hf-id="hf-70ds" id="sfx-heart" class="clip" src="assets/sfx/impact-bass-1.mp3" data-start="44.82" data-duration="1.8" data-volume="0.55" data-track-index="3"></audio>
+      <audio data-hf-id="hf-02a1" id="sfx-cut8" class="clip" src="assets/sfx/whoosh.mp3" data-start="49.87" data-duration="0.5" data-volume="0.6" data-track-index="2"></audio>
+      <audio data-hf-id="hf-0ocz" id="sfx-riser" class="clip" src="assets/sfx/riser.mp3" data-start="51.16" data-duration="3.6" data-volume="0.45" data-track-index="2"></audio>
+      <audio data-hf-id="hf-dqmi" id="sfx-end" class="clip" src="assets/sfx/impact-bass-1.mp3" data-start="54.56" data-duration="2.1" data-volume="0.7" data-track-index="3"></audio>
+    </div>
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      window.__timelines["main"] = tl;
+      // <seams:auto> — generated by seam-stamp.mjs from ledger.json; do not hand-edit.
+      // Regenerate: node <motion-doctrine>/scripts/seam-stamp.mjs --ledger ledger.json --write index.html
+      gsap.set("#hook", { autoAlpha: 1, xPercent: 0, yPercent: 0, scale: 1, filter: "blur(0px)", transformOrigin: "50% 50%" });
+      gsap.set(["#ask","#bolt","#rain","#sun","#light","#baby","#heart","#tally"], { autoAlpha: 0, xPercent: 0, yPercent: 0, scale: 1, filter: "blur(0px)", transformOrigin: "50% 50%" });
+      gsap.set("#orbit", { autoAlpha: 0, scale: 0.78, filter: "blur(18px)", xPercent: 0, yPercent: 0, transformOrigin: "50% 50%" });
+      
+      // SEAM — hook→ask : cut-the-curve LEFT (cut @4)
+      tl.to("#hook", { xPercent: -12, autoAlpha: 0, duration: 0.34, ease: "power3.in" }, 3.66);
+      tl.set("#hook", { autoAlpha: 0 }, 4);
+      tl.fromTo("#ask", { xPercent: 10, autoAlpha: 0.35 }, { xPercent: 0, autoAlpha: 1, duration: 0.42, ease: "power4.out", immediateRender: false }, 4);
+      
+      // SEAM — ask→orbit : zoom-through (push) (cut @8)
+      tl.to("#ask", { scale: 1.18, filter: "blur(18px)", duration: 0.21, ease: "power3.in" }, 7.79);
+      tl.to("#ask", { autoAlpha: 0, duration: 0.21, ease: "none" }, 7.79);
+      tl.set("#ask", { autoAlpha: 0 }, 8);
+      tl.fromTo("#orbit", { autoAlpha: 0.15, scale: 0.78, filter: "blur(18px)" }, { autoAlpha: 1, scale: 1.0, filter: "blur(0px)", duration: 0.5, ease: "expo.out", immediateRender: false }, 8);
+      
+      // SEAM — orbit→bolt : cut-the-curve LEFT (cut @14)
+      tl.to("#orbit", { xPercent: -12, autoAlpha: 0, duration: 0.34, ease: "power3.in" }, 13.66);
+      tl.set("#orbit", { autoAlpha: 0 }, 14);
+      tl.fromTo("#bolt", { xPercent: 10, autoAlpha: 0.35 }, { xPercent: 0, autoAlpha: 1, duration: 0.42, ease: "power4.out", immediateRender: false }, 14);
+      
+      // SEAM — bolt→rain : cut-the-curve LEFT (cut @20)
+      tl.to("#bolt", { xPercent: -12, autoAlpha: 0, duration: 0.34, ease: "power3.in" }, 19.66);
+      tl.set("#bolt", { autoAlpha: 0 }, 20);
+      tl.fromTo("#rain", { xPercent: 10, autoAlpha: 0.35 }, { xPercent: 0, autoAlpha: 1, duration: 0.42, ease: "power4.out", immediateRender: false }, 20);
+      
+      // SEAM — rain→sun : cut-the-curve LEFT (cut @26)
+      tl.to("#rain", { xPercent: -12, autoAlpha: 0, duration: 0.34, ease: "power3.in" }, 25.66);
+      tl.set("#rain", { autoAlpha: 0 }, 26);
+      tl.fromTo("#sun", { xPercent: 10, autoAlpha: 0.35 }, { xPercent: 0, autoAlpha: 1, duration: 0.42, ease: "power4.out", immediateRender: false }, 26);
+      
+      // SEAM — sun→light : cut-the-curve LEFT (cut @32)
+      tl.to("#sun", { xPercent: -12, autoAlpha: 0, duration: 0.34, ease: "power3.in" }, 31.66);
+      tl.set("#sun", { autoAlpha: 0 }, 32);
+      tl.fromTo("#light", { xPercent: 10, autoAlpha: 0.35 }, { xPercent: 0, autoAlpha: 1, duration: 0.42, ease: "power4.out", immediateRender: false }, 32);
+      
+      // SEAM — light→baby : cut-the-curve LEFT (cut @38)
+      tl.to("#light", { xPercent: -12, autoAlpha: 0, duration: 0.34, ease: "power3.in" }, 37.66);
+      tl.set("#light", { autoAlpha: 0 }, 38);
+      tl.fromTo("#baby", { xPercent: 10, autoAlpha: 0.35 }, { xPercent: 0, autoAlpha: 1, duration: 0.42, ease: "power4.out", immediateRender: false }, 38);
+      
+      // SEAM — baby→heart : cut-the-curve LEFT (cut @44)
+      tl.to("#baby", { xPercent: -12, autoAlpha: 0, duration: 0.34, ease: "power3.in" }, 43.66);
+      tl.set("#baby", { autoAlpha: 0 }, 44);
+      tl.fromTo("#heart", { xPercent: 10, autoAlpha: 0.35 }, { xPercent: 0, autoAlpha: 1, duration: 0.42, ease: "power4.out", immediateRender: false }, 44);
+      
+      // SEAM — heart→tally : cut-the-curve UP (conclusion) (cut @50)
+      tl.to("#heart", { yPercent: -12, autoAlpha: 0, duration: 0.34, ease: "power3.in" }, 49.66);
+      tl.set("#heart", { autoAlpha: 0 }, 50);
+      tl.fromTo("#tally", { yPercent: 10, autoAlpha: 0.35 }, { yPercent: 0, autoAlpha: 1, duration: 0.42, ease: "power4.out", immediateRender: false }, 50);
+      
+      // </seams:auto>
+      // hold to the end of the film
+      tl.set({}, {}, 59);
+    </script>
+  </body>
+</html>

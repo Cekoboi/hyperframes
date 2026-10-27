@@ -1,0 +1,139 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: #111111;
+      color: #ffffff;
+      font-family: "Inter", sans-serif;
+    }
+    #sun-art {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1920px;
+      height: 1080px;
+    }
+    #sun-num {
+      position: absolute;
+      left: 180px;
+      top: 140px;
+      font-family: "League Gothic", sans-serif;
+      font-size: 600px;
+      line-height: 0.82;
+      font-variant-numeric: tabular-nums;
+    }
+    #sun-unit {
+      position: absolute;
+      left: 450px;
+      top: 420px;
+      font-family: "League Gothic", sans-serif;
+      font-size: 170px;
+      line-height: 0.82;
+      color: #ffd21f;
+    }
+    #sun-label {
+      position: absolute;
+      left: 192px;
+      top: 680px;
+      width: 600px;
+      font-weight: 900;
+      font-size: 64px;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+    }
+    #sun-more {
+      position: absolute;
+      left: 192px;
+      top: 900px;
+      width: 600px;
+      font-weight: 700;
+      font-size: 40px;
+      line-height: 1.1;
+    }
+    #sun-src {
+      position: absolute;
+      right: 220px;
+      top: 945px;
+      font-weight: 700;
+      font-size: 28px;
+      color: #111111;
+      opacity: 0.75;
+    }
+  </style>
+  <div data-hf-id="hf-uvsj" id="root" data-composition-id="sun" data-width="1920" data-height="1080">
+    <svg data-hf-id="hf-iydt" id="sun-art" viewBox="0 0 1920 1080" data-layout-ignore>
+      <g data-hf-id="hf-r62l" id="sun-rays" stroke="#ffd21f" stroke-width="22" stroke-linecap="butt"></g>
+      <circle data-hf-id="hf-585n" id="sun-disc" cx="1640" cy="540" r="640" fill="#ffd21f" />
+    </svg>
+    <div data-hf-id="hf-tn0e" id="sun-num">0</div>
+    <div data-hf-id="hf-afy1" id="sun-unit">juta tan</div>
+    <div data-hf-id="hf-njqp" id="sun-label">jisim Matahari bertukar jadi tenaga</div>
+    <div data-hf-id="hf-22bi" id="sun-more">— itulah cahaya yang sampai kepada kita</div>
+    <div data-hf-id="hf-3zl7" id="sun-src">Sumber: NASA</div>
+  </div>
+  <script>
+    const rays = document.getElementById("sun-rays");
+    const NS = "http://www.w3.org/2000/svg";
+    const rayEls = [];
+    for (let i = 0; i < 9; i++) {
+      const a = ((140 + i * 10) * Math.PI) / 180;
+      const r0 = 680;
+      const r1 = 800;
+      const l = document.createElementNS(NS, "line");
+      l.setAttribute("x1", (1640 + Math.cos(a) * r0).toFixed(1));
+      l.setAttribute("y1", (540 + Math.sin(a) * r0).toFixed(1));
+      l.setAttribute("x2", (1640 + Math.cos(a) * r1).toFixed(1));
+      l.setAttribute("y2", (540 + Math.sin(a) * r1).toFixed(1));
+      l.setAttribute("stroke-dasharray", "120");
+      l.setAttribute("stroke-dashoffset", "120");
+      rays.appendChild(l);
+      rayEls.push(l);
+    }
+    const tl = gsap.timeline({ paused: true });
+    const numEl = document.getElementById("sun-num");
+    const n = { v: 0 };
+    tl.fromTo(
+      n,
+      { v: 0 },
+      {
+        v: 4,
+        duration: 1.2,
+        ease: "power2.out",
+        onUpdate: () => {
+          numEl.textContent = String(Math.round(n.v));
+        },
+      },
+      0.4,
+    );
+    tl.fromTo(
+      "#sun-unit",
+      { clipPath: "inset(0 100% 0 0)" },
+      { clipPath: "inset(0 0% 0 0)", duration: 0.4, ease: "power3.out" },
+      0.5,
+    );
+    tl.fromTo(
+      "#sun-label",
+      { clipPath: "inset(0 100% 0 0)" },
+      { clipPath: "inset(0 0% 0 0)", duration: 0.45, ease: "power3.out" },
+      1.0,
+    );
+    // the mass leaves as light: rays burst off the disc on one frame
+    tl.fromTo(
+      rayEls,
+      { attr: { "stroke-dashoffset": 120 } },
+      { attr: { "stroke-dashoffset": 0 }, duration: 0.3, ease: "power4.out", stagger: 0.02 },
+      1.8,
+    );
+    tl.fromTo("#sun-disc", { attr: { r: 640 } }, { attr: { r: 655 }, duration: 0.3, ease: "power4.out" }, 1.8);
+    tl.fromTo("#sun-src", { opacity: 0 }, { opacity: 0.75, duration: 0.3, ease: "none" }, 2.0);
+    tl.fromTo(
+      "#sun-more",
+      { clipPath: "inset(0 100% 0 0)" },
+      { clipPath: "inset(0 0% 0 0)", duration: 0.45, ease: "power3.out" },
+      2.5,
+    );
+    window.__timelines["sun"] = tl;
+  </script>
+</template>

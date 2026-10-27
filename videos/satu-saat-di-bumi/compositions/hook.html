@@ -1,0 +1,90 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: #ffd21f;
+      color: #111111;
+      font-family: "Inter", sans-serif;
+    }
+    #hook-one {
+      position: absolute;
+      left: 474px;
+      top: 170px;
+      font-family: "League Gothic", sans-serif;
+      font-size: 900px;
+      line-height: 0.82;
+      font-variant-numeric: tabular-nums;
+    }
+    #hook-ring {
+      position: absolute;
+      left: 132px;
+      top: 90px;
+      width: 900px;
+      height: 900px;
+    }
+    #hook-saat {
+      position: absolute;
+      left: 1060px;
+      top: 300px;
+      font-family: "League Gothic", sans-serif;
+      font-size: 380px;
+      line-height: 0.82;
+    }
+    #hook-ask {
+      position: absolute;
+      left: 1068px;
+      top: 650px;
+      width: 660px;
+      font-weight: 900;
+      font-size: 72px;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+    }
+  </style>
+  <div data-hf-id="hf-ktv8" id="root" data-composition-id="hook" data-width="1920" data-height="1080">
+    <svg data-hf-id="hf-vfcc" id="hook-ring" viewBox="0 0 900 900" data-layout-ignore>
+      <circle data-hf-id="hf-8ah3" cx="450" cy="450" r="420" fill="none" stroke="#111111" stroke-opacity="0.15" stroke-width="28" />
+      <circle data-hf-id="hf-zinq"
+        id="hook-sweep"
+        cx="450"
+        cy="450"
+        r="420"
+        fill="none"
+        stroke="#111111"
+        stroke-width="28"
+        stroke-linecap="butt"
+        transform="rotate(-90 450 450)"
+        stroke-dasharray="2638.94"
+        stroke-dashoffset="2638.94"
+      />
+    </svg>
+    <div data-hf-id="hf-d1le" id="hook-one">1</div>
+    <div data-hf-id="hf-mezr" id="hook-saat">SAAT</div>
+    <div data-hf-id="hf-51ba" id="hook-ask">Apa yang berlaku di Bumi?</div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    // the ring sweeps for exactly one real second
+    tl.fromTo(
+      "#hook-sweep",
+      { attr: { "stroke-dashoffset": 2638.94 } },
+      { attr: { "stroke-dashoffset": 0 }, duration: 1, ease: "none" },
+      0.3,
+    );
+    tl.fromTo(
+      "#hook-one",
+      { scale: 1 },
+      { scale: 1.06, duration: 0.12, ease: "power2.out", yoyo: true, repeat: 1 },
+      1.3,
+    );
+    tl.fromTo(
+      "#hook-ask",
+      { clipPath: "inset(0 100% 0 0)" },
+      { clipPath: "inset(0 0% 0 0)", duration: 0.45, ease: "power3.out" },
+      1.7,
+    );
+    window.__timelines["hook"] = tl;
+  </script>
+</template>

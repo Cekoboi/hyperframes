@@ -1,0 +1,120 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: #111111;
+      color: #ffffff;
+      font-family: "Inter", sans-serif;
+    }
+    #bolt-grid {
+      position: absolute;
+      left: 192px;
+      top: 200px;
+      width: 840px;
+      height: 680px;
+    }
+    #bolt-num {
+      position: absolute;
+      left: 1150px;
+      top: 130px;
+      font-family: "League Gothic", sans-serif;
+      font-size: 560px;
+      line-height: 0.82;
+      color: #ffd21f;
+      font-variant-numeric: tabular-nums;
+    }
+    #bolt-label {
+      position: absolute;
+      left: 1160px;
+      top: 610px;
+      width: 568px;
+      font-weight: 900;
+      font-size: 64px;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+    }
+    #bolt-more {
+      position: absolute;
+      left: 1160px;
+      top: 790px;
+      width: 568px;
+      font-weight: 700;
+      font-size: 44px;
+      line-height: 1.1;
+    }
+    #bolt-src {
+      position: absolute;
+      left: 192px;
+      top: 945px;
+      font-weight: 700;
+      font-size: 28px;
+      opacity: 0.75;
+    }
+  </style>
+  <div data-hf-id="hf-sb08" id="root" data-composition-id="bolt" data-width="1920" data-height="1080">
+    <svg data-hf-id="hf-4z74" id="bolt-grid" viewBox="0 0 840 680" data-layout-ignore></svg>
+    <div data-hf-id="hf-sbkt" id="bolt-num">0</div>
+    <div data-hf-id="hf-yf6v" id="bolt-label">kali kilat berlaku di seluruh dunia</div>
+    <div data-hf-id="hf-dn64" id="bolt-more">≈ 1.4 bilion setahun</div>
+    <div data-hf-id="hf-gf0q" id="bolt-src">Sumber: NOAA</div>
+  </div>
+  <script>
+    const grid = document.getElementById("bolt-grid");
+    const NS = "http://www.w3.org/2000/svg";
+    const bolts = [];
+    for (let i = 0; i < 44; i++) {
+      const col = i % 11;
+      const row = Math.floor(i / 11);
+      const g = document.createElementNS(NS, "g");
+      g.setAttribute("id", "bolt-b" + i);
+      const p = document.createElementNS(NS, "path");
+      // a solid zig-zag bolt, 56 x 120, drawn around its centre
+      p.setAttribute("d", "M8,-60 L-22,6 L-2,6 L-10,60 L24,-12 L4,-12 L18,-60 Z");
+      p.setAttribute("fill", "#ffd21f");
+      g.appendChild(p);
+      grid.appendChild(g);
+      bolts.push({ el: g, x: 38 + col * 76.4, y: 85 + row * 170 });
+    }
+    const tl = gsap.timeline({ paused: true });
+    const numEl = document.getElementById("bolt-num");
+    const n = { v: 0 };
+    // one real second: 44 bolts land while the count runs 0 -> 44
+    bolts.forEach((b, i) => {
+      tl.fromTo(
+        b.el,
+        { x: b.x, y: b.y, scale: 0, opacity: 0 },
+        { x: b.x, y: b.y, scale: 1, opacity: 1, duration: 0.18, ease: "back.out(1.6)" },
+        0.6 + (i / 44) * 1,
+      );
+    });
+    tl.fromTo(
+      n,
+      { v: 0 },
+      {
+        v: 44,
+        duration: 1,
+        ease: "none",
+        onUpdate: () => {
+          numEl.textContent = String(Math.round(n.v));
+        },
+      },
+      0.6,
+    );
+    tl.fromTo(
+      "#bolt-label",
+      { clipPath: "inset(0 100% 0 0)" },
+      { clipPath: "inset(0 0% 0 0)", duration: 0.4, ease: "power3.out" },
+      0.3,
+    );
+    tl.fromTo("#bolt-src", { opacity: 0 }, { opacity: 0.75, duration: 0.3, ease: "none" }, 1.8);
+    tl.fromTo(
+      "#bolt-more",
+      { clipPath: "inset(0 100% 0 0)" },
+      { clipPath: "inset(0 0% 0 0)", duration: 0.45, ease: "power3.out" },
+      2.2,
+    );
+    window.__timelines["bolt"] = tl;
+  </script>
+</template>

@@ -1,0 +1,67 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: #111111;
+      color: #ffffff;
+      font-family: "Inter", sans-serif;
+    }
+    #ask-a {
+      position: absolute;
+      left: 192px;
+      top: 150px;
+      font-weight: 900;
+      font-size: 120px;
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+    #ask-b {
+      position: absolute;
+      left: 180px;
+      top: 290px;
+      font-family: "League Gothic", sans-serif;
+      font-size: 460px;
+      line-height: 0.82;
+      color: #ffd21f;
+      transform-origin: 0% 50%;
+    }
+    #ask-c {
+      position: absolute;
+      left: 192px;
+      top: 720px;
+      font-weight: 900;
+      font-size: 96px;
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+  </style>
+  <div data-hf-id="hf-ltkc" id="root" data-composition-id="ask" data-width="1920" data-height="1080">
+    <div data-hf-id="hf-kmbp" id="ask-a">Dalam masa</div>
+    <div data-hf-id="hf-dcqz" id="ask-b">SATU SAAT</div>
+    <div data-hf-id="hf-rv90" id="ask-c">di planet kita…</div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo(
+      "#ask-a",
+      { clipPath: "inset(0 100% 0 0)" },
+      { clipPath: "inset(0 0% 0 0)", duration: 0.4, ease: "power3.out" },
+      0.3,
+    );
+    tl.fromTo(
+      "#ask-b",
+      { opacity: 0, scale: 1.35 },
+      { opacity: 1, scale: 1, duration: 0.3, ease: "power4.out" },
+      0.9,
+    );
+    tl.fromTo(
+      "#ask-c",
+      { clipPath: "inset(0 100% 0 0)" },
+      { clipPath: "inset(0 0% 0 0)", duration: 0.45, ease: "power3.out" },
+      1.9,
+    );
+    window.__timelines["ask"] = tl;
+  </script>
+</template>

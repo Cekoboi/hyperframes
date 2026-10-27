@@ -1,0 +1,125 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: #ff3b1f;
+      color: #111111;
+      font-family: "Inter", sans-serif;
+    }
+    #orbit-label {
+      position: absolute;
+      left: 192px;
+      top: 130px;
+      font-weight: 900;
+      font-size: 64px;
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+    }
+    #orbit-num {
+      position: absolute;
+      left: 180px;
+      top: 230px;
+      font-family: "League Gothic", sans-serif;
+      font-size: 520px;
+      line-height: 0.82;
+      font-variant-numeric: tabular-nums;
+    }
+    #orbit-unit {
+      position: absolute;
+      left: 640px;
+      top: 470px;
+      font-family: "League Gothic", sans-serif;
+      font-size: 220px;
+      line-height: 0.82;
+    }
+    #orbit-more {
+      position: absolute;
+      left: 1060px;
+      top: 470px;
+      width: 668px;
+      font-weight: 900;
+      font-size: 64px;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+    }
+    #orbit-track {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1920px;
+      height: 1080px;
+    }
+    #orbit-src {
+      position: absolute;
+      right: 192px;
+      top: 945px;
+      font-weight: 700;
+      font-size: 28px;
+      opacity: 0.75;
+    }
+  </style>
+  <div data-hf-id="hf-z1ih" id="root" data-composition-id="orbit" data-width="1920" data-height="1080">
+    <svg data-hf-id="hf-uhml" id="orbit-track" viewBox="0 0 1920 1080" data-layout-ignore>
+      <line data-hf-id="hf-y7ue" x1="192" y1="860" x2="1728" y2="860" stroke="#111111" stroke-width="8" />
+      <g data-hf-id="hf-48ta" id="orbit-ticks" stroke="#111111" stroke-width="4"></g>
+      <text data-hf-id="hf-rerf" x="192" y="930" font-family="Inter" font-weight="700" font-size="30" fill="#111111">0 km</text>
+      <text data-hf-id="hf-8xbd" x="1728" y="930" font-family="Inter" font-weight="700" font-size="30" fill="#111111" text-anchor="end">30 km</text>
+      <g data-hf-id="hf-39j2" id="orbit-earth">
+        <circle data-hf-id="hf-nl7b" cx="0" cy="0" r="52" fill="#2340ff" />
+        <path data-hf-id="hf-mo3h" d="M-30,-30 C-10,-42 10,-30 6,-14 C2,0 -20,-4 -28,8 C-36,0 -40,-20 -30,-30 Z" fill="#00a86b" />
+        <path data-hf-id="hf-gd67" d="M10,10 C26,4 42,14 36,30 C28,42 12,40 6,28 C2,20 4,14 10,10 Z" fill="#00a86b" />
+      </g>
+    </svg>
+    <div data-hf-id="hf-edpn" id="orbit-label">Bumi meluncur mengelilingi Matahari</div>
+    <div data-hf-id="hf-do7g" id="orbit-num">0</div>
+    <div data-hf-id="hf-4jku" id="orbit-unit">km</div>
+    <div data-hf-id="hf-urap" id="orbit-more">Itu ≈ 107,000 km sejam</div>
+    <div data-hf-id="hf-aa4d" id="orbit-src">Sumber: NASA</div>
+  </div>
+  <script>
+    const ticks = document.getElementById("orbit-ticks");
+    for (let i = 0; i <= 30; i++) {
+      const x = 192 + (1536 * i) / 30;
+      const t = document.createElementNS("http://www.w3.org/2000/svg", "line");
+      t.setAttribute("x1", x);
+      t.setAttribute("x2", x);
+      t.setAttribute("y1", i % 5 === 0 ? 830 : 845);
+      t.setAttribute("y2", 860);
+      ticks.appendChild(t);
+    }
+    const tl = gsap.timeline({ paused: true });
+    const numEl = document.getElementById("orbit-num");
+    const n = { v: 0 };
+    tl.fromTo(
+      "#orbit-label",
+      { clipPath: "inset(0 100% 0 0)" },
+      { clipPath: "inset(0 0% 0 0)", duration: 0.4, ease: "power3.out" },
+      0.25,
+    );
+    // one real second: Earth runs 30 km of its orbit while the count runs 0 -> 30
+    tl.fromTo("#orbit-earth", { x: 192, y: 860 }, { x: 1728, y: 860, duration: 1, ease: "none" }, 0.6);
+    tl.fromTo(
+      n,
+      { v: 0 },
+      {
+        v: 30,
+        duration: 1,
+        ease: "none",
+        onUpdate: () => {
+          numEl.textContent = String(Math.round(n.v));
+        },
+      },
+      0.6,
+    );
+    tl.fromTo("#orbit-src", { opacity: 0 }, { opacity: 0.75, duration: 0.3, ease: "none" }, 1.8);
+    tl.fromTo(
+      "#orbit-more",
+      { clipPath: "inset(0 100% 0 0)" },
+      { clipPath: "inset(0 0% 0 0)", duration: 0.45, ease: "power3.out" },
+      2.2,
+    );
+    window.__timelines["orbit"] = tl;
+  </script>
+</template>
